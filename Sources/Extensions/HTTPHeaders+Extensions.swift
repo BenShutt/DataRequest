@@ -18,19 +18,19 @@ public extension HTTPHeaders {
     }
 
     /// Append `headers`
-    /// - Parameter header: `HTTPHeaders`
+    /// - Parameter headers: `HTTPHeaders`
     mutating func append(_ headers: HTTPHeaders) {
         self = appending(headers)
     }
 
-    /// Append `headers`
+    /// Append `headers` and return new `HTTPHeaders`
     /// - Parameter headers: The headers
     /// - Returns: `HTTPHeaders`
     func appending(_ headers: HTTPHeader...) -> HTTPHeaders {
         appending(HTTPHeaders(headers))
     }
 
-    /// Append `headers`
+    /// Append `headers` and return new `HTTPHeaders`
     /// - Parameter headers: `HTTPHeaders`
     /// - Returns: `HTTPHeaders`
     func appending(_ headers: HTTPHeaders) -> HTTPHeaders {

@@ -16,4 +16,7 @@ public extension HTTPHeader {
 
     /// `"Content-Type: application/json"`
     static let contentTypeJSON: HTTPHeader = .contentType("application/json")
+
+    /// `"Content-Type: application/octet-stream"`
+    static let contentTypeData: HTTPHeader = .contentType("application/octet-stream")
 }

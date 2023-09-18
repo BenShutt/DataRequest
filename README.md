@@ -26,7 +26,7 @@ struct GetMyModel: JSONDataRequest {
 Execute the request in an asynchronous environment:
 
 ```swift
-let model = try await MyModel().request()
+let myModel = try await GetMyModel().request()
 ```
 
 ## Installation

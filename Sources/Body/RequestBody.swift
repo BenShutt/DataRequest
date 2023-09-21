@@ -16,5 +16,5 @@ public protocol RequestBody {
     var contentType: HTTPHeader { get }
 
     /// Request body data
-    var body: Data { get throws }
+    var body: Data { get async throws }
 }

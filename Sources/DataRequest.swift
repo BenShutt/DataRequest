@@ -69,11 +69,11 @@ public extension DataRequest {
 
     /// Make a `URLRequest`
     private var urlRequest: URLRequest {
-        get throws {
+        get async throws {
             var request = try URLRequest(url: urlComponents, method: method)
             request.headers = headers
             if let requestBody = self as? RequestBody {
-                request.httpBody = try requestBody.body
+                request.httpBody = try await requestBody.body
             }
             return request
         }

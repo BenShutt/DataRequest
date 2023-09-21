@@ -38,7 +38,7 @@ public extension JSONBody {
 
     /// Encode `jsonBody` with `encoder`
     var body: Data {
-        get throws {
+        get async throws {
             try encoder.encode(jsonBody)
         }
     }

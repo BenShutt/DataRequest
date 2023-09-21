@@ -33,6 +33,9 @@ public protocol DataRequest {
 
     /// Additional `HTTPHeaders`
     var additionalHeaders: HTTPHeaders { get }
+
+    /// The timeout interval of the URL request
+    var timeoutInterval: TimeInterval { get }
 }
 
 // MARK: - Extensions
@@ -52,6 +55,11 @@ public extension DataRequest {
     /// Defaults to empty
     var additionalHeaders: HTTPHeaders {
         []
+    }
+
+    /// Defaults to 60s (1 minute)
+    var timeoutInterval: TimeInterval {
+        60
     }
 
     // MARK: Helper
@@ -75,6 +83,7 @@ public extension DataRequest {
             if let requestBody = self as? RequestBody {
                 request.httpBody = try await requestBody.body
             }
+            request.timeoutInterval = timeoutInterval
             return request
         }
     }

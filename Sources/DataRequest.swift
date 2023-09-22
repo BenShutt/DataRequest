@@ -57,15 +57,15 @@ public extension DataRequest {
         []
     }
 
-    /// Defaults to 60s (1 minute)
+    /// Defaults the value on the default session configuration
     var timeoutInterval: TimeInterval {
-        60
+        URLSessionConfiguration.default.timeoutIntervalForRequest
     }
 
     // MARK: Helper
 
     /// Get the `HTTPHeaders`
-    private var headers: HTTPHeaders {
+    var headers: HTTPHeaders {
         var headers: HTTPHeaders = .default
         headers.append(acceptHeader) // TODO: Clean up
         if let requestBody = self as? RequestBody {
@@ -76,7 +76,7 @@ public extension DataRequest {
     }
 
     /// Make a `URLRequest`
-    private var urlRequest: URLRequest {
+    var urlRequest: URLRequest {
         get async throws {
             var request = try URLRequest(url: urlComponents, method: method)
             request.headers = headers

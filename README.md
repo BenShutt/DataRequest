@@ -41,3 +41,19 @@ dependencies: [
     )
 ]
 ```
+
+## Debug Logging
+
+To log request and responses, make a new `Session` instance (managing its memory) with:
+
+```swift
+extension Session {
+
+    static let api = Session(eventMonitors: [
+        ResponseEventMonitor()
+    ])
+}
+```
+
+Then return it in the `session` property of the `DataRequest`.
+This logs the the `debugDescription` of the `DataResponse`.

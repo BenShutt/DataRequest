@@ -67,7 +67,7 @@ public extension DataRequest {
     /// Get the `HTTPHeaders`
     private var headers: HTTPHeaders {
         var headers: HTTPHeaders = .default
-        headers.append(acceptHeader)
+        headers.append(acceptHeader) // TODO: Clean up
         if let requestBody = self as? RequestBody {
             headers.append(requestBody.contentType)
         }

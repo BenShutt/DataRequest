@@ -34,21 +34,4 @@ public extension DataRequest {
             .serializingDecodable(responseBody, decoder: decoder)
             .value
     }
-
-    /// Decode the response body and await the value, validating if required.
-    /// - Parameters:
-    ///   - validate: If true, validate the response, defaults to `true`
-    ///   - decoder: The data decoder to use, defaults to `JSONDecoder()`
-    /// - Returns: `ResponseBody`
-    @discardableResult
-    func decodeValue<ResponseBody: Decodable>(
-        validate: Bool = true,
-        decoder: DataDecoder = JSONDecoder()
-    ) async throws -> ResponseBody {
-        try await decodeValue(
-            ResponseBody.self,
-            validate: validate,
-            decoder: decoder
-        )
-    }
 }

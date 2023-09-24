@@ -28,6 +28,10 @@ public protocol DecodableRequest: URLRequestMaker {
     /// Defaults to `nil`.
     var interceptor: RequestInterceptor? { get }
 
+    /// Validate the response.
+    /// Defaults to `true`.
+    var validate: Bool { get }
+
     /// Configure the request before executing.
     /// Defaults to returning the argument without mutating.
     /// - Parameter urlRequest: The URL request
@@ -53,6 +57,11 @@ public extension DecodableRequest {
         nil
     }
 
+    /// Defaults to `true`
+    var validate: Bool {
+        true
+    }
+
     /// Defaults to returning the argument without mutating
     func configuring(urlRequest: URLRequest) -> URLRequest {
         urlRequest
@@ -67,13 +76,18 @@ public extension DecodableRequest {
 
     // MARK: Request
 
-    /// Execute the data request decoding the reponse
+    /// Execute the data request decoding the response
+    /// - Returns: The response body
     @discardableResult
     func request() async throws -> ResponseBody {
         try await session.request(
             configuring(urlRequest: urlRequest),
             interceptor: interceptor
         )
-        .decodeValue(decoder: decoder)
+        .decodeValue(
+            ResponseBody.self,
+            validate: validate,
+            decoder: decoder
+        )
     }
 }

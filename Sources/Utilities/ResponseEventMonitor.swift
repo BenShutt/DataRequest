@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-/// `EventMonitor` to log responses
+/// `EventMonitor` that logs responses
 public struct ResponseEventMonitor: EventMonitor {
 
     /// `DispatchQueue` to execute on

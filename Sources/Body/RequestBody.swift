@@ -9,12 +9,12 @@
 import Foundation
 import Alamofire
 
-/// Define a HTTP request body
+/// Defines a HTTP request body
 public protocol RequestBody {
 
     /// `HTTPHeader` for the content type of the body
     var contentType: HTTPHeader { get }
 
     /// Request body data
-    var body: Data { get async throws }
+    var body: Data { get throws }
 }

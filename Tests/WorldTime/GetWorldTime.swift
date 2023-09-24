@@ -11,7 +11,7 @@ import Alamofire
 import DataRequest
 
 /// Get the world time for a time zone
-struct GetWorldTime: JSONDataRequest {
+struct GetWorldTime: DecodableRequest {
 
     /// Decode response as `WorldTime`
     typealias ResponseBody = WorldTime
@@ -38,7 +38,6 @@ struct GetWorldTime: JSONDataRequest {
         urlComponents.scheme = "https"
         urlComponents.host = "worldtimeapi.org"
         urlComponents.path = "/api/timezone/\(timeZone)"
-        urlComponents.queryItems = nil
         return urlComponents
     }
 }

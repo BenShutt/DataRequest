@@ -12,7 +12,7 @@ import Alamofire
 public extension HTTPHeader {
 
     /// `"Accept: application/json"`
-    static let acceptJSON = HTTPHeader(name: "Accept", value: "application/json")
+    static let acceptJSON: HTTPHeader = .accept("application/json")
 
     /// `"Content-Type: application/json"`
     static let contentTypeJSON: HTTPHeader = .contentType("application/json")

@@ -4,18 +4,17 @@ Modularization of data requests using Alamofire with concurrency.
 
 ## Usage
 
-Define a decodable model served by HTTP response:
+Define a decodable model returned in a response:
 
 ```swift
-struct MyModel: Decodable { ... }
+struct Model: Decodable { ... }
 ```
 
-Specify the parameters of the endpoint of the request:
+Specify the configuration of the request endpoint:
 
 ```swift
-struct GetMyModel: JSONDataRequest {
-
-    typealias ResponseBody = MyModel
+struct GetModel: DecodableRequest {
+    typealias ResponseBody = Model
 
     var urlComponents: URLComponents {
         ...
@@ -23,10 +22,10 @@ struct GetMyModel: JSONDataRequest {
 }
 ```
 
-Execute the request in an asynchronous environment:
+Finally, execute the request in an asynchronous environment:
 
 ```swift
-let myModel = try await GetMyModel().request()
+let model = try await GetModel().request()
 ```
 
 ## Installation
@@ -42,18 +41,43 @@ dependencies: [
 ]
 ```
 
+## Motivation
+
+This package encourages a design pattern where the configuration of an endpoint is encapsulated into the properties of a structure.
+Similarly to how a SwiftUI `View` works.
+
+It also provides various shorthand.
+It adds rather than replaces; direct use of Alamofire (or vanilla `URLSession`) is still recommended.
+
+## Notes
+
+The `URLRequestMaker` checks for conformance of `RequestBody` and adds the HTTP body accordingly.
+A `DecodableRequest` is a `URLRequestMaker` with the configuration of a data request defaulted in properties.
+
+## Uploads
+
+Since `URLRequestMaker` conforms to `URLRequestConvertible` you can use Alamofire directly:
+
+```swift
+AF.upload(data, with: Endpoint())
+    .uploadProgress { progress in ... }
+    .decodeValue()
+```
+
+
 ## Debug Logging
 
-To log request and responses, make a new `Session` instance (managing its memory) with:
+To log request/responses, make a new `Session` instance (managing its lifecycle accoringly) with a `ResponseEventMonitor` event monitor.
+The `ResponseEventMonitor` logs the `debugDescription` of the `DataResponse`.
+For example:
 
 ```swift
 extension Session {
 
-    static let api = Session(eventMonitors: [
+    static let debug = Session(eventMonitors: [
         ResponseEventMonitor()
     ])
 }
 ```
 
-Then return it in the `session` property of the `DataRequest`.
-This logs the the `debugDescription` of the `DataResponse`.
+This can be returned in the `session` property of the `DecodableRequest`.

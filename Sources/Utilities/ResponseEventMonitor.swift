@@ -19,7 +19,7 @@ public struct ResponseEventMonitor: EventMonitor {
     public init() {}
 
     public func request<Value>(
-        _ request: Alamofire.DataRequest,
+        _ request: DataRequest,
         didParseResponse response: DataResponse<Value, AFError>
     ) {
         debugPrint(response)

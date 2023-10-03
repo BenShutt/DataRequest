@@ -24,7 +24,7 @@ public protocol DecodableRequest: URLRequestMaker {
     /// Defaults to `JSONDecoder()`.
     var decoder: DataDecoder { get }
 
-    /// The reqyest interceptor.
+    /// The request interceptor.
     /// Defaults to `nil`.
     var interceptor: RequestInterceptor? { get }
 

@@ -24,7 +24,7 @@ extension DateFormatter {
 
     /// An ISO8601 `DateFormatter` with:
     /// - Calendar identifier `.iso8601`
-    /// - Locale identidier `"en_US_POSIX"`
+    /// - Locale identifier `"en_US_POSIX"`
     /// - Given `timeZone`, defaults to `.current`
     /// - Given `dateFormat`
     ///

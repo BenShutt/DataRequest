@@ -31,11 +31,6 @@ public protocol DecodableRequest: URLRequestMaker {
     /// Validate the response.
     /// Defaults to `true`.
     var validate: Bool { get }
-
-    /// Configure the request before executing.
-    /// Defaults to returning the argument without mutating.
-    /// - Parameter urlRequest: The URL request
-    func configuring(urlRequest: URLRequest) -> URLRequest
 }
 
 // MARK: - Extensions
@@ -62,11 +57,6 @@ public extension DecodableRequest {
         true
     }
 
-    /// Defaults to returning the argument without mutating
-    func configuring(urlRequest: URLRequest) -> URLRequest {
-        urlRequest
-    }
-
     // MARK: URLRequestMaker
 
     /// Defaults to `[.acceptJSON]`
@@ -81,7 +71,7 @@ public extension DecodableRequest {
     @discardableResult
     func request() async throws -> ResponseBody {
         try await session.request(
-            configuring(urlRequest: urlRequest),
+            urlRequest,
             interceptor: interceptor
         )
         .decodeValue(

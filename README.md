@@ -2,6 +2,11 @@
 
 Modularization of data requests using Alamofire with concurrency.
 
+This package encourages a design pattern where the configuration of an endpoint is encapsulated into the properties of a structure.
+A similar design to a SwiftUI `View`.
+It adds rather than replaces; direct use of Alamofire (or vanilla `URLSession`) is still encouraged.
+There is also some helpful shorthand.
+
 ## Usage
 
 Define a decodable model returned in a response:
@@ -41,13 +46,6 @@ dependencies: [
 ]
 ```
 
-## Motivation
-
-This package encourages a design pattern where the configuration of an endpoint is encapsulated into the properties of a structure, similarly to a SwiftUI `View`.
-There is also some helpful shorthand.
-
-It adds rather than replaces; direct use of Alamofire (or vanilla `URLSession`) is still encouraged.
-
 ## Notes
 
 * The `URLRequestMaker` checks for conformance of `RequestBody` and adds the HTTP body accordingly.
@@ -63,11 +61,11 @@ AF.upload(data, with: Endpoint())
     .decodeValue()
 ```
 
-where `Endpoint` is some `URLRequestMaker` since it conforms to `URLRequestConvertible`.
+where `Endpoint` is some `URLRequestMaker`.
 
 ## Debug Logging
 
-To log request/responses, make a new `Session` instance (managing its lifecycle accoringly) with a `ResponseEventMonitor` event monitor.
+To log request/responses, make a new `Session` instance (managing its lifecycle accordingly) with a `ResponseEventMonitor` event monitor.
 The `ResponseEventMonitor` logs the `debugDescription` of the `DataResponse`.
 For example:
 

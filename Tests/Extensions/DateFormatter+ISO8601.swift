@@ -17,11 +17,6 @@ extension DateFormatter {
         iso8601Formatter(dateFormat: .iso8601Millis)
     }
 
-    /// An ISO8601 `DateFormatter` without milliseconds.
-    static var iso8601: DateFormatter {
-        iso8601Formatter(dateFormat: .iso8601)
-    }
-
     /// An ISO8601 `DateFormatter` with:
     /// - Calendar identifier `.iso8601`
     /// - Locale identifier `"en_US_POSIX"`
@@ -51,7 +46,4 @@ private extension String {
 
     /// Date format for ISO8601 including milliseconds
     static let iso8601Millis: String = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-
-    /// Date format for ISO8601
-    static let iso8601 = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
 }

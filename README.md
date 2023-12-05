@@ -43,16 +43,15 @@ dependencies: [
 
 ## Motivation
 
-This package encourages a design pattern where the configuration of an endpoint is encapsulated into the properties of a structure.
-Similarly to how a SwiftUI `View` works.
+This package encourages a design pattern where the configuration of an endpoint is encapsulated into the properties of a structure, similarly to a SwiftUI `View`.
+There is also some helpful shorthand.
 
-It also provides various shorthand.
-It adds rather than replaces; direct use of Alamofire (or vanilla `URLSession`) is still recommended.
+It adds rather than replaces; direct use of Alamofire (or vanilla `URLSession`) is still encouraged.
 
 ## Notes
 
-The `URLRequestMaker` checks for conformance of `RequestBody` and adds the HTTP body accordingly.
-A `DecodableRequest` is a `URLRequestMaker` with the configuration of a data request defaulted in properties.
+* The `URLRequestMaker` checks for conformance of `RequestBody` and adds the HTTP body accordingly.
+* A `DecodableRequest` is a `URLRequestMaker` with the configuration properties of a data request defaulted.
 
 ## Uploads
 
@@ -64,6 +63,7 @@ AF.upload(data, with: Endpoint())
     .decodeValue()
 ```
 
+where `Endpoint` is some `URLRequestMaker` since it conforms to `URLRequestConvertible`.
 
 ## Debug Logging
 

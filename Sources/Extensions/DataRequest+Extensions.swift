@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 public extension DataRequest {
-    
+
     /// Validate if required
     /// - Parameter value: Should validate
     /// - Returns: `Self`

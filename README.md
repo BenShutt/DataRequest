@@ -7,7 +7,7 @@ A similar design to a SwiftUI `View`.
 It adds rather than replaces; direct use of Alamofire (or vanilla `URLSession`) is still encouraged.
 There is also some helpful shorthand.
 
-## Usage
+## Example Usage
 
 Define a decodable model returned in a response:
 
@@ -48,8 +48,8 @@ dependencies: [
 
 ## Notes
 
-* The `URLRequestMaker` checks for conformance of `RequestBody` and adds the HTTP body accordingly.
-* A `DecodableRequest` is a `URLRequestMaker` with the configuration properties of a data request defaulted.
+* The `URLRequestMaker` checks for conformance of `RequestBody` and adds the HTTP body accordingly
+* A `DecodableRequest` is a `URLRequestMaker` with the configuration properties of a data request defaulted
 
 ## Uploads
 
@@ -71,7 +71,6 @@ For example:
 
 ```swift
 extension Session {
-
     static let debug = Session(eventMonitors: [
         ResponseEventMonitor()
     ])

@@ -11,7 +11,6 @@ import Foundation
 /// Model from the World Time API
 /// http://worldtimeapi.org
 struct WorldTime: Decodable {
-
     var abbreviation: String
     var datetime: Date
     var dstOffset: Int

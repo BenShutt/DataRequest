@@ -10,7 +10,6 @@ import XCTest
 @testable import DataRequest
 
 final class JSONDataRequestTests: XCTestCase {
-
     private let timeZone = "Europe/London"
 
     func test() async throws {

@@ -15,8 +15,8 @@ import Testing
     private let expectedHeaderKeys = [
         "Accept",
         "Accept-Encoding",
+        "Accept-Language",
         "User-Agent",
-        "Accept-Language"
     ]
 
     @Test func test() async throws {

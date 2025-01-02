@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-/// An entity which builds a `URLRequest`.
+/// An entity that builds a `URLRequest`.
 public protocol URLRequestMaker: URLRequestConvertible {
 
     /// The components of a URL.
@@ -25,15 +25,16 @@ public protocol URLRequestMaker: URLRequestConvertible {
     /// Defaults to `.default` (from Alamofire).
     ///
     /// - Note: The final `URLRequest` should be considered the source of truth.
-    /// For example, the content type might be added while making the `URLRequest`.
+    /// For example, the content type might be added while making the `URLRequest`
+    /// but may not be defined here.
     var headers: HTTPHeaders { get }
 
     /// The HTTP body.
     ///
-    /// Defaults to `nil`
+    /// Defaults to `nil`.
     var body: HTTPBody? { get throws }
 
-    /// The `URLRequest` constructed from the other properties, before updates
+    /// The `URLRequest` constructed from the other properties, before updates.
     var urlRequest: URLRequest { get throws }
 
     // MARK: URLRequestConvertible
@@ -42,7 +43,7 @@ public protocol URLRequestMaker: URLRequestConvertible {
     /// For example, applying `URLEncoding`.
     ///
     /// By default, returns `urlRequest`.
-    /// Conformers may provide their own implementation using `urlRequest`.
+    /// Conformers may provide their own implementation mutating `urlRequest`.
     func asURLRequest() throws -> URLRequest
 }
 

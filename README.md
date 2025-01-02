@@ -2,9 +2,9 @@
 
 Modularization of data requests using Alamofire with concurrency.
 
-This package encourages a design pattern where the configuration of an endpoint is encapsulated into the properties of a structure.
+This package encourages a design pattern where the _description_ of an endpoint is encapsulated into the properties of a structure.
 A similar design to a SwiftUI `View`.
-It adds rather than replaces; direct use of Alamofire (or vanilla `URLSession`) is still encouraged.
+It adds rather than replaces; direct use of Alamofire (or `URLSession`) is still encouraged.
 There is also some helpful shorthand.
 
 ## Example Usage
@@ -46,13 +46,9 @@ dependencies: [
 ]
 ```
 
-## Notes
-
-* The `URLRequestMaker` checks for conformance of `RequestBody` and adds the HTTP body accordingly
-* A `DecodableRequest` is a `URLRequestMaker` with the configuration properties of a data request defaulted
-
 ## Uploads
 
+A `DecodableRequest` is a `URLRequestMaker` with the configuration properties of a data request defaulted.
 Since `URLRequestMaker` conforms to `URLRequestConvertible` you can use Alamofire directly:
 
 ```swift

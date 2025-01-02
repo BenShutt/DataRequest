@@ -12,6 +12,7 @@ import Foundation
 /// http://worldtimeapi.org
 struct WorldTime: Decodable {
     var abbreviation: String
+    var unixtime: Int
     var datetime: Date
     var dstOffset: Int
     var rawOffset: Int

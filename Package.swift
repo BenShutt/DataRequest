@@ -1,35 +1,44 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
+let name = "DataRequest"
 let package = Package(
-    name: "DataRequest",
+    name: name,
     platforms: [
         .macOS(.v13),
         .iOS(.v16)
     ],
     products: [
         .library(
-            name: "DataRequest",
-            targets: ["DataRequest"]
+            name: name,
+            targets: [name]
         )
     ],
     dependencies: [
         .package(
             url: "https://github.com/Alamofire/Alamofire.git",
             .upToNextMajor(from: "5.8.0")
+        ),
+        .package(
+            url: "https://github.com/SimplyDanny/SwiftLintPlugins",
+            .upToNextMajor(from: "0.0.0")
         )
     ],
     targets: [
         .target(
-            name: "DataRequest",
+            name: name,
             dependencies: ["Alamofire"],
-            path: "Sources"
+            path: "Sources",
+            plugins: [.plugin(
+                name: "SwiftLintBuildToolPlugin",
+                package: "SwiftLintPlugins"
+            )]
         ),
         .testTarget(
-            name: "DataRequestTests",
-            dependencies: ["DataRequest"],
+            name: "\(name)Tests",
+            dependencies: [.byName(name: name)],
             path: "Tests"
         )
     ]

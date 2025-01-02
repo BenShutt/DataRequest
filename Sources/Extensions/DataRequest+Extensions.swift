@@ -24,7 +24,7 @@ public extension DataRequest {
     ///   - validate: If true, validate the response, defaults to `true`
     ///   - decoder: The data decoder to use, defaults to `JSONDecoder()`
     /// - Returns: `ResponseBody`
-    func decodeValue<ResponseBody: Decodable>(
+    func decodeValue<ResponseBody: Decodable & Sendable>(
         _ responseBody: ResponseBody.Type,
         validate: Bool = true,
         decoder: DataDecoder = JSONDecoder()

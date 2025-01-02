@@ -17,18 +17,22 @@ public protocol DecodableRequest: URLRequestMaker {
     associatedtype ResponseBody: Decodable & Sendable
 
     /// The Alamofire session.
+    ///
     /// Defaults to `.default`.
     var session: Session { get }
 
     /// Define how the response data should be decoded.
+    ///
     /// Defaults to `JSONDecoder()`.
     var decoder: DataDecoder { get }
 
     /// The request interceptor.
+    ///
     /// Defaults to `nil`.
     var interceptor: RequestInterceptor? { get }
 
     /// Validate the response.
+    ///
     /// Defaults to `true`.
     var validate: Bool { get }
 }
@@ -36,23 +40,18 @@ public protocol DecodableRequest: URLRequestMaker {
 // MARK: - Extensions
 
 public extension DecodableRequest {
-
-    /// Defaults to `.default`
     var session: Session {
         .default
     }
 
-    /// Defaults to `JSONDecoder()`
     var decoder: DataDecoder {
         JSONDecoder()
     }
 
-    /// Defaults to `nil`
     var interceptor: RequestInterceptor? {
         nil
     }
 
-    /// Defaults to `true`
     var validate: Bool {
         true
     }

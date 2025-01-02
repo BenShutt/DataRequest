@@ -40,10 +40,10 @@ public protocol URLRequestMaker: URLRequestConvertible {
     // MARK: URLRequestConvertible
 
     /// Apply updates to the `urlRequest` before returning.
+    /// Conformers may provide their own implementation mutating `urlRequest`.
     /// For example, applying `URLEncoding`.
     ///
     /// By default, returns `urlRequest`.
-    /// Conformers may provide their own implementation mutating `urlRequest`.
     func asURLRequest() throws -> URLRequest
 }
 

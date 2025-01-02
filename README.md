@@ -12,7 +12,7 @@ There is also some helpful shorthand.
 Define a decodable model returned in a response:
 
 ```swift
-struct Model: Decodable { ... }
+struct Model: Decodable, Sendable { ... }
 ```
 
 Specify the configuration of the request endpoint:
@@ -21,9 +21,10 @@ Specify the configuration of the request endpoint:
 struct GetModel: DecodableRequest {
     typealias ResponseBody = Model
 
-    var urlComponents: URLComponents {
-        ...
-    }
+    var urlComponents: URLComponents { ... }
+    var method: HTTPMethod { ... }
+    var headers: HTTPHeaders { ... }
+    var body: HTTPBody? { ... }
 }
 ```
 

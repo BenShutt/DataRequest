@@ -32,3 +32,6 @@ fi
 
 # Generate the mocks
 "${EXE}" run "${SWIFTY_MOCKY}" generate
+
+# Print success
+echo "Mocks generated successfully"

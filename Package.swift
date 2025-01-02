@@ -27,7 +27,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/MakeAWishFoundation/SwiftyMocky",
-            branch: "master" // Should match Mintfile
+            branch: "master" // Version should match Mintfile
         )
     ],
     targets: [

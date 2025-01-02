@@ -24,6 +24,10 @@ let package = Package(
         .package(
             url: "https://github.com/SimplyDanny/SwiftLintPlugins",
             .upToNextMajor(from: "0.0.0")
+        ),
+        .package(
+            url: "https://github.com/MakeAWishFoundation/SwiftyMocky",
+            .upToNextMajor(from: "4.0.0")
         )
     ],
     targets: [

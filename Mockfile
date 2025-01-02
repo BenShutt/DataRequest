@@ -1,0 +1,13 @@
+unit.tests.mock:
+  sources:
+    include:
+      - ./Sources
+  output:
+    ./Tests/Mocks/Mock.generated.swift
+  targets:
+    - DataRequestTests
+  testable:
+    - DataRequest
+  import:
+    - Foundation
+    - Alamofire

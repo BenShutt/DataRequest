@@ -5,7 +5,7 @@
 # Usage: ./mocks.sh
 #
 # Description:
-# Generates mock file(s) using SwiftyMocky.
+# Generates mock files using SwiftyMocky.
 #
 # Installation:
 # https://github.com/MakeAWishFoundation/SwiftyMocky?tab=readme-ov-file#2-installing-swiftymocky-cli
@@ -14,10 +14,13 @@
 # Set defaults
 set -o nounset -o errexit -o errtrace -o pipefail
 
-# Path to swiftymocky binary
-EXE="${HOME}/.mint/bin/swiftymocky"
+# Command that runs the swiftymocky binary
+EXE="mint"
 
-# Check the swiftymocky executable exists
+# Repository name for SwiftyMocky
+SWIFTY_MOCKY="MakeAWishFoundation/SwiftyMocky"
+
+# Check the executable exists
 if ! [[ -x "$(command -v "${EXE}")" ]]; then
     echo "Command not found '${EXE}'." 1>&2
     echo "Please see the docs of $0 for installation steps." 1>&2
@@ -25,4 +28,7 @@ if ! [[ -x "$(command -v "${EXE}")" ]]; then
 fi
 
 # Validate the setup 
-"${EXE}" doctor 
+"${EXE}" run "${SWIFTY_MOCKY}" doctor
+
+# Generate the mocks
+"${EXE}" run "${SWIFTY_MOCKY}" generate

@@ -27,7 +27,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/MakeAWishFoundation/SwiftyMocky",
-            .upToNextMajor(from: "4.0.0")
+            branch: "master" // Should match Mintfile
         )
     ],
     targets: [
@@ -42,7 +42,10 @@ let package = Package(
         ),
         .testTarget(
             name: "\(name)Tests",
-            dependencies: [.byName(name: name)],
+            dependencies: [
+                .byName(name: name),
+                "SwiftyMocky"
+            ],
             path: "Tests"
         )
     ]

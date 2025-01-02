@@ -1,5 +1,5 @@
 {
-  "originHash" : "8ad217aede9c548580609389bcaab5b4f07942fea62c262879da274ef79a6fc1",
+  "originHash" : "9b920edae1514aefb776c527caffbc6acff227b34ec8ed7c177749cbf6ef8b7e",
   "pins" : [
     {
       "identity" : "aexml",
@@ -87,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MakeAWishFoundation/SwiftyMocky",
       "state" : {
-        "revision" : "1e81c0c566c26d2d4e4cc2d799afad7d3ef931ab",
-        "version" : "4.2.0"
+        "branch" : "master",
+        "revision" : "3672eea08c7098214ac54ee26c7a7e39ea01a2f1"
       }
     },
     {
@@ -105,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/jpsim/Yams",
       "state" : {
-        "revision" : "81a65c4069c28011ee432f2858ba0de49b086677",
-        "version" : "3.0.1"
+        "revision" : "3036ba9d69cf1fd04d433527bc339dc0dc75433d",
+        "version" : "5.1.3"
       }
     }
   ],

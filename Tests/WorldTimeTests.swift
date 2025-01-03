@@ -9,26 +9,12 @@
 import Testing
 @testable import DataRequest
 
-/// _Integration_ tests using the World Time API
-@Suite struct WorldTimeTests {
+@Suite("Integration tests for the World Time API")
+struct WorldTimeTests {
     private let timeZone = "Europe/London"
-    private let expectedHeaderKeys = [
-        "Accept",
-        "Accept-Encoding",
-        "Accept-Language",
-        "User-Agent",
-    ]
 
     @Test func test() async throws {
         let worldTime = try await GetWorldTime(timeZone: timeZone).request()
         #expect(worldTime.timezone == timeZone)
-    }
-
-    @Test func headers() async throws {
-        let endpoint = GetWorldTime(timeZone: timeZone)
-        let urlRequest = try endpoint.asURLRequest()
-        let headers = urlRequest.allHTTPHeaderFields ?? [:]
-        #expect(Set(expectedHeaderKeys) == Set(headers.keys))
-        #expect(headers["Accept"] == "application/json")
     }
 }

@@ -19,9 +19,4 @@ public extension HTTPHeader {
 
     /// `"Content-Type: application/octet-stream"`
     static let contentTypeData: HTTPHeader = .contentType("application/octet-stream")
-
-    /// `"Content-Type: application/x-www-form-urlencoded; charset=utf-8"`
-    static let contentTypeForm: HTTPHeader = .contentType(
-      "application/x-www-form-urlencoded; charset=utf-8"
-    )
 }

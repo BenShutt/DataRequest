@@ -1,19 +1,20 @@
 //
-//  JSONDataRequestTests.swift
+//  WorldTimeTests.swift
 //  DataRequestTests
 //
 //  Created by Ben Shutt on 18/09/2023.
 //  Copyright © 2023 Ben Shutt. All rights reserved.
 //
 
-import XCTest
 @testable import DataRequest
+import Testing
 
-final class JSONDataRequestTests: XCTestCase {
+@Suite("Integration tests for the World Time API", .disabled())
+struct WorldTimeTests {
     private let timeZone = "Europe/London"
 
-    func test() async throws {
+    @Test func worldTimeAPI() async throws {
         let worldTime = try await GetWorldTime(timeZone: timeZone).request()
-        XCTAssertEqual(worldTime.timezone, timeZone)
+        #expect(worldTime.timezone == timeZone)
     }
 }

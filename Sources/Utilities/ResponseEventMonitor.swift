@@ -6,20 +6,21 @@
 //  Copyright © 2023 Ben Shutt. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 /// `EventMonitor` that logs responses
 public struct ResponseEventMonitor: EventMonitor {
-
-    /// `DispatchQueue` to execute on
+    /// The `DispatchQueue` onto which Alamofire's root `CompositeEventMonitor` will dispatch events
     public var queue: DispatchQueue { .main }
 
     /// Public initializer
-    public init() {}
+    public init() {
+        // Defined for public access level
+    }
 
     public func request<Value>(
-        _ request: DataRequest,
+        _ _: DataRequest,
         didParseResponse response: DataResponse<Value, AFError>
     ) {
         debugPrint(response)

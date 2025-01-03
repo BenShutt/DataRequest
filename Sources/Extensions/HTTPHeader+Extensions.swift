@@ -6,11 +6,10 @@
 //  Copyright © 2023 Ben Shutt. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 public extension HTTPHeader {
-
     /// `"Accept: application/json"`
     static let acceptJSON: HTTPHeader = .accept("application/json")
 

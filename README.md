@@ -2,9 +2,9 @@
 
 Modularization of data requests using Alamofire with concurrency.
 
-This package encourages a design pattern where the configuration of an endpoint is encapsulated into the properties of a structure.
+This package encourages a design pattern where the _description_ of an endpoint is encapsulated into the properties of a structure.
 A similar design to a SwiftUI `View`.
-It adds rather than replaces; direct use of Alamofire (or vanilla `URLSession`) is still encouraged.
+It adds rather than replaces; direct use of Alamofire (or `URLSession`) is still encouraged.
 There is also some helpful shorthand.
 
 ## Example Usage
@@ -12,7 +12,7 @@ There is also some helpful shorthand.
 Define a decodable model returned in a response:
 
 ```swift
-struct Model: Decodable { ... }
+struct Model: Decodable, Sendable { ... }
 ```
 
 Specify the configuration of the request endpoint:
@@ -21,9 +21,10 @@ Specify the configuration of the request endpoint:
 struct GetModel: DecodableRequest {
     typealias ResponseBody = Model
 
-    var urlComponents: URLComponents {
-        ...
-    }
+    var urlComponents: URLComponents { ... }
+    var method: HTTPMethod { ... }
+    var headers: HTTPHeaders { ... }
+    var body: HTTPBody? { ... }
 }
 ```
 
@@ -46,13 +47,9 @@ dependencies: [
 ]
 ```
 
-## Notes
-
-* The `URLRequestMaker` checks for conformance of `RequestBody` and adds the HTTP body accordingly
-* A `DecodableRequest` is a `URLRequestMaker` with the configuration properties of a data request defaulted
-
 ## Uploads
 
+A `DecodableRequest` is a `URLRequestMaker` with the configuration properties of a data request defaulted.
 Since `URLRequestMaker` conforms to `URLRequestConvertible` you can use Alamofire directly:
 
 ```swift
@@ -78,3 +75,7 @@ extension Session {
 ```
 
 This can be returned in the `session` property of the `DecodableRequest`.
+
+## GitHub Actions
+
+The `.github/workflows/swift.yml` GitHub action checks that the Swift package builds and the tests past using a swift docker container.

@@ -6,64 +6,84 @@
 //  Copyright © 2023 Ben Shutt. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
-/// An entity which builds a `URLRequest`.
-/// If the entity (also) conforms to `RequestBody` then the HTTP body and content type header is set.
+/// An entity that builds a `URLRequest`.
 public protocol URLRequestMaker: URLRequestConvertible {
-
     /// The components of a URL.
     var urlComponents: URLComponents { get }
 
     /// The HTTP method.
+    ///
     /// Defaults to `.get`.
     var method: HTTPMethod { get }
 
-    /// Additional headers to append to the default.
-    /// Defaults to empty.
-    var additionalHeaders: HTTPHeaders { get }
+    /// The default HTTP headers.
+    ///
+    /// Defaults to `.default` (from Alamofire).
+    ///
+    /// - Note: The final `URLRequest` should be considered the source of truth.
+    /// For example, the content type might be added while making the `URLRequest`
+    /// but may not be defined here.
+    var headers: HTTPHeaders { get }
+
+    /// The HTTP body.
+    ///
+    /// Defaults to `nil`.
+    var body: HTTPBody? { get throws }
+
+    /// The `URLRequest` constructed from the other properties, before updates.
+    var urlRequest: URLRequest { get throws }
+
+    // MARK: URLRequestConvertible
+
+    /// Apply updates to the `urlRequest` before returning.
+    /// Conformers may provide their own implementation mutating `urlRequest`.
+    /// For example, applying `URLEncoding`.
+    ///
+    /// By default, returns `urlRequest`.
+    func asURLRequest() throws -> URLRequest
 }
 
-// MARK: - Extensions
+// MARK: - Defaults
 
 public extension URLRequestMaker {
-
-    /// Defaults to `.get`
     var method: HTTPMethod {
         .get
     }
 
-    /// Defaults to empty
-    var additionalHeaders: HTTPHeaders {
-        []
-    }
-
-    /// Get all HTTP headers
     var headers: HTTPHeaders {
-        var headers: HTTPHeaders = .default
-        if let requestBody = self as? RequestBody {
-            headers.append(requestBody.contentType)
-        }
-        headers.append(additionalHeaders)
-        return headers
+        .default
     }
 
-    /// Make the URL request
+    var body: HTTPBody? {
+        nil
+    }
+
     var urlRequest: URLRequest {
         get throws {
+            let body = try body
+
+            var headers = headers
+            if let contentType = body?.contentType {
+                headers.append(contentType)
+            }
+
             var request = try URLRequest(
                 url: urlComponents,
                 method: method,
                 headers: headers
             )
-            if let requestBody = self as? RequestBody {
-                request.httpBody = try requestBody.body
-            }
+            request.httpBody = body?.body
             return request
         }
     }
+}
 
+// MARK: - URLRequestConvertible
+
+public extension URLRequestMaker {
     func asURLRequest() throws -> URLRequest {
         try urlRequest
     }

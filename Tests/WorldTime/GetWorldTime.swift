@@ -6,33 +6,33 @@
 //  Copyright © 2023 Ben Shutt. All rights reserved.
 //
 
-import Foundation
 import Alamofire
 import DataRequest
+import Foundation
 
 /// Get the world time for a time zone
 struct GetWorldTime: DecodableRequest {
-
     /// Decode response as `WorldTime`
     typealias ResponseBody = WorldTime
 
-    /// The time zone to fetch, defaults to `"Europe/London"`
-    var timeZone: String
+    /// The time zone to fetch
+    let timeZone: String
 
     /// The Alamofire session
-    var session: Session {
-        .worldTime
-    }
+    let session: Session = .worldTime
 
-    /// Define a specific `JSONDecoder`
-    var decoder: DataDecoder {
+    /// Define a specific `JSONDecoder` with snake case and ISO8601 dates
+    let decoder: DataDecoder = {
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .formatted(.iso8601Millis)
         decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let iso8601 = try decoder.singleValueContainer().decode(String.self)
+            let format = Date.ISO8601FormatStyle(includingFractionalSeconds: true)
+            return try format.parse(iso8601)
+        }
         return decoder
-    }
+    }()
 
-    /// `URLComponents` for World Time
     var urlComponents: URLComponents {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
@@ -40,4 +40,16 @@ struct GetWorldTime: DecodableRequest {
         urlComponents.path = "/api/timezone/\(timeZone)"
         return urlComponents
     }
+
+    var headers: HTTPHeaders {
+        .default.appending(.acceptJSON)
+    }
+}
+
+// MARK: - Session + WorldTime
+
+private extension Session {
+    static let worldTime = Session(eventMonitors: [
+        ResponseEventMonitor()
+    ])
 }

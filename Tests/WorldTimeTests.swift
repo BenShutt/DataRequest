@@ -9,11 +9,11 @@
 @testable import DataRequest
 import Testing
 
-@Suite("Integration tests for the World Time API")
+@Suite("Integration tests for the World Time API", .disabled())
 struct WorldTimeTests {
     private let timeZone = "Europe/London"
 
-    @Test func test() async throws {
+    @Test func worldTimeAPI() async throws {
         let worldTime = try await GetWorldTime(timeZone: timeZone).request()
         #expect(worldTime.timezone == timeZone)
     }

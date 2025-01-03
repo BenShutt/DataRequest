@@ -75,3 +75,7 @@ extension Session {
 ```
 
 This can be returned in the `session` property of the `DecodableRequest`.
+
+## GitHub Actions
+
+The `.github/workflows/swift.yml` GitHub action checks that the Swift package builds and the tests past using a swift docker container.

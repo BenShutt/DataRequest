@@ -16,7 +16,7 @@ public struct ResponseEventMonitor: EventMonitor {
 
     /// Public initializer
     public init() {
-        // Defined or public access level
+        // Defined for public access level
     }
 
     public func request<Value>(

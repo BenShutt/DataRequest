@@ -6,13 +6,12 @@
 //  Copyright © 2023 Ben Shutt. All rights reserved.
 //
 
-import Foundation
 import Alamofire
 import DataRequest
+import Foundation
 
 /// Get the world time for a time zone
 struct GetWorldTime: DecodableRequest {
-
     /// Decode response as `WorldTime`
     typealias ResponseBody = WorldTime
 

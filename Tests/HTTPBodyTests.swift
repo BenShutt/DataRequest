@@ -6,9 +6,9 @@
 //  Copyright © 2025 Ben Shutt. All rights reserved.
 //
 
+@testable import DataRequest
 import Foundation
 import Testing
-@testable import DataRequest
 
 // MARK: - EncodableBody
 
@@ -21,7 +21,6 @@ struct EncodableBody: Encodable {
 
 @Suite("Unit tests for HTTPBody")
 struct HTTPBodyTests {
-
     // MARK: - Data
 
     @Test func dataHeader() throws {

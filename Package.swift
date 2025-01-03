@@ -31,15 +31,24 @@ let package = Package(
             name: name,
             dependencies: ["Alamofire"],
             path: "Sources",
-            plugins: [.plugin(
-                name: "SwiftLintBuildToolPlugin",
-                package: "SwiftLintPlugins"
-            )]
+            plugins: [.swiftlint]
         ),
         .testTarget(
             name: "\(name)Tests",
             dependencies: [.byName(name: name)],
-            path: "Tests"
+            path: "Tests",
+            plugins: [.swiftlint]
         )
     ]
 )
+
+// MARK: - Plugins
+
+private extension PackageDescription.Target.PluginUsage {
+    static var swiftlint: Self {
+        .plugin(
+            name: "SwiftLintBuildToolPlugin",
+            package: "SwiftLintPlugins"
+        )
+    }
+}

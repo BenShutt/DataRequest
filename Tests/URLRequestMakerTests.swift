@@ -6,10 +6,10 @@
 //  Copyright © 2025 Ben Shutt. All rights reserved.
 //
 
-import Foundation
 import Alamofire
-import Testing
 @testable import DataRequest
+import Foundation
+import Testing
 
 // MARK: - EmptyURLRequestMaker
 
@@ -42,7 +42,6 @@ struct URLRequestMakerWithBody: URLRequestMaker {
 
 @Suite("Unit tests for URLRequestMaker")
 struct URLRequestMakerTests {
-
     // MARK: - Defaults
 
     @Test func defaultMethod() throws {
@@ -58,7 +57,7 @@ struct URLRequestMakerTests {
         #expect(Set(headers.keys) == [
             "Accept-Encoding",
             "Accept-Language",
-            "User-Agent",
+            "User-Agent"
         ])
     }
 

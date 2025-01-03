@@ -6,12 +6,11 @@
 //  Copyright © 2023 Ben Shutt. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 /// An entity that builds a `URLRequest`.
 public protocol URLRequestMaker: URLRequestConvertible {
-
     /// The components of a URL.
     var urlComponents: URLComponents { get }
 

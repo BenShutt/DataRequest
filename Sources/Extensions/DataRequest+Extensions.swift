@@ -6,11 +6,10 @@
 //  Copyright © 2023 Ben Shutt. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 public extension DataRequest {
-
     /// Validate if required
     /// - Parameter value: Should validate
     /// - Returns: `Self`

@@ -6,8 +6,8 @@
 //  Copyright © 2023 Ben Shutt. All rights reserved.
 //
 
-import Testing
 @testable import DataRequest
+import Testing
 
 @Suite("Integration tests for the World Time API")
 struct WorldTimeTests {

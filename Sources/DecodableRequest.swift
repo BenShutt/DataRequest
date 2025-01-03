@@ -6,15 +6,14 @@
 //  Copyright © 2023 Ben Shutt. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 /// An endpoint that executes a URL request and decodes the response into a model.
 public protocol DecodableRequest: URLRequestMaker {
-
     /// Model expected in the response body that will be decoded from data.
     /// - Note: `Empty` can be used when a response is empty. E.g. on HTTP status code 204.
-    associatedtype ResponseBody: Decodable & Sendable
+    associatedtype ResponseBody: Decodable, Sendable
 
     /// The Alamofire session.
     ///

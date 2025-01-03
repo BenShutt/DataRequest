@@ -6,12 +6,11 @@
 //  Copyright © 2023 Ben Shutt. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 /// Defines a HTTP request body
 public struct HTTPBody {
-
     /// `HTTPHeader` for the content type of the body
     public var contentType: HTTPHeader
 
@@ -28,7 +27,6 @@ public struct HTTPBody {
 // MARK: - HTTPBody + JSON
 
 extension HTTPBody {
-
     /// Make a JSON request body
     /// - Parameters:
     ///   - model: Object that will be encoded into JSON data
@@ -48,7 +46,6 @@ extension HTTPBody {
 // MARK: - HTTPBody + Data
 
 extension HTTPBody {
-
     /// Make a `Data` request body
     /// - Parameter data: The data of the body
     /// - Returns: The `Data` request body

@@ -6,11 +6,10 @@
 //  Copyright © 2023 Ben Shutt. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 public extension HTTPHeaders {
-
     /// Append `headers` to this instance
     /// - Parameter headers: `HTTPHeader`
     mutating func append(_ headers: HTTPHeader...) {

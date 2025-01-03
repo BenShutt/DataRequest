@@ -75,7 +75,3 @@ extension Session {
 ```
 
 This can be returned in the `session` property of the `DecodableRequest`.
-
-## Dependencies
-
-The unit tests use [SwiftyMocky](https://github.com/MakeAWishFoundation/SwiftyMocky) with the CLI installed using [Mint](https://github.com/yonaskolb/Mint) as documented in the [README](https://github.com/MakeAWishFoundation/SwiftyMocky?tab=readme-ov-file#installation).

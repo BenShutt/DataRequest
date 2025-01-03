@@ -24,10 +24,6 @@ let package = Package(
         .package(
             url: "https://github.com/SimplyDanny/SwiftLintPlugins",
             .upToNextMajor(from: "0.0.0")
-        ),
-        .package(
-            url: "https://github.com/MakeAWishFoundation/SwiftyMocky",
-            branch: "master" // Version should match Mintfile
         )
     ],
     targets: [
@@ -42,10 +38,7 @@ let package = Package(
         ),
         .testTarget(
             name: "\(name)Tests",
-            dependencies: [
-                .byName(name: name),
-                "SwiftyMocky"
-            ],
+            dependencies: [.byName(name: name)],
             path: "Tests"
         )
     ]

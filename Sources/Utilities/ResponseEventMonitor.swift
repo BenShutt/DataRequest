@@ -12,7 +12,7 @@ import Alamofire
 /// `EventMonitor` that logs responses
 public struct ResponseEventMonitor: EventMonitor {
 
-    /// `DispatchQueue` to execute on
+    /// The `DispatchQueue` onto which Alamofire's root `CompositeEventMonitor` will dispatch events
     public var queue: DispatchQueue { .main }
 
     /// Public initializer
